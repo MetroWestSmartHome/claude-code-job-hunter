@@ -182,7 +182,7 @@ python enhance_job_data.py
 
 ### Step 3: Filter for Promising Roles
 ```bash
-python filter_it_roles_v2.py
+python filter_promising_jobs.py
 # Reads filters from config.py:
 # - Remote preference (config: remote_only)
 # - IT leadership titles (config: target_titles)
@@ -395,7 +395,7 @@ Expect 2-3 iterations before scores feel accurate.
 ### Scripts
 - `job_hunter.py --no-ai` - Scrape jobs without API
 - `enhance_job_data.py` - Add deduplication + company rating placeholders
-- `filter_it_roles_v2.py` - Filter using criteria from config.py (salary, titles, subspecialties)
+- `filter_promising_jobs.py` - Filter using criteria from config.py (salary, titles, subspecialties)
 
 ### Key Files
 - `config.py` - Search terms, job sources, filters

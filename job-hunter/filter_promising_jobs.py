@@ -9,11 +9,18 @@ MIN_SALARY = CONFIG.get("min_salary", 0)
 target_titles = CONFIG.get("target_titles", ['director', 'manager', 'head', 'vp'])
 it_subspecialties = CONFIG.get("it_subspecialties", ['engineering', 'platform', 'operations'])
 negative_keywords = CONFIG.get("negative_keywords", ['helpdesk', 'service desk'])
+commutable_areas = CONFIG.get("commutable_areas", [])
 
 promising = []
 
 for idx, row in df.iterrows():
-    if not row['is_remote']:
+    location = str(row['location']).lower()
+    is_remote = row['is_remote']
+
+    # Include: remote jobs OR hybrid/on-site in commutable areas
+    is_commutable = any(area.lower() in location for area in commutable_areas) if commutable_areas else False
+
+    if not is_remote and not is_commutable:
         continue
 
     title_lower = str(row['title']).lower()
@@ -41,11 +48,6 @@ for idx, row in df.iterrows():
     salary_min = row['min_amount'] if pd.notna(row['min_amount']) else None
     meets_salary = salary_min is None or salary_min >= MIN_SALARY
 
-    # Location check for hybrid (reads user's city from config)
-    location = str(row['location'])
-    user_city = CONFIG.get("location", "").split(",")[0].strip().lower()  # Extract city from "City, State"
-    is_local_area = user_city and user_city in location.lower()
-
     # Categorize
     if has_subspecialty and meets_salary and not is_support_focused:
         score_note = ""
@@ -56,8 +58,12 @@ for idx, row in df.iterrows():
         elif not salary_min:
             score_note = "[Salary TBD]"
 
-        if is_local_area:
-            score_note += f" | [{user_city.title()} area - check commute]"
+        # Flag hybrid/on-site roles
+        if not is_remote:
+            if is_commutable:
+                score_note += " | [HYBRID/ON-SITE - Commutable]"
+            else:
+                score_note += " | [HYBRID/ON-SITE - Check location]"
 
         promising.append((idx+1, row, score_note))
 

@@ -33,7 +33,7 @@ version: 1.0.0
 
 3. **Filter promising roles**
    ```bash
-   python filter_it_roles_v2.py
+   python filter_promising_jobs.py
    ```
    - Filters for: Remote preference, leadership titles, min salary (all from config.py)
    - Excludes: Helpdesk-only, on-site, low salary
@@ -242,7 +242,7 @@ cp docs/resume-files/base-master/resume-base.md job-hunter/resume.txt
 |--------|---------|----------|
 | `job_hunter.py` | Scrape jobs (Indeed, Google Jobs, ZipRecruiter) | `job-hunter/` |
 | `enhance_job_data.py` | Add deduplication + company rating placeholders | `job-hunter/` |
-| `filter_it_roles_v2.py` | Filter for IT leadership roles | `job-hunter/` |
+| `filter_promising_jobs.py` | Filter for IT leadership roles | `job-hunter/` |
 | `create-application-folder.py` | Scaffold application materials | `docs/resume-files/tools/` |
 | `md-to-docx.py` | Convert markdown → Word .docx | `docs/resume-files/tools/` |
 | `cover-letter-template.py` | Generate cover letter from template | `docs/resume-files/tools/` |
@@ -330,7 +330,7 @@ Step 2: Enhancing with deduplication...
 ✅ jobs_enhanced.csv created (0 duplicates detected)
 
 Step 3: Filtering promising roles...
-[Runs filter_it_roles_v2.py]
+[Runs filter_promising_jobs.py]
 ✅ 6 promising jobs found
 
 Step 4: Scoring jobs...

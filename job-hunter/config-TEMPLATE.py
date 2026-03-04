@@ -14,13 +14,13 @@ CONFIG = {
     # Search parameters
     # Customize these search terms for your target roles
     "search_terms": [
-        "YOUR JOB TITLE 1 remote",      # e.g., "IT Director remote"
-        "YOUR JOB TITLE 2 remote",      # e.g., "Senior IT Manager remote"
-        "YOUR JOB TITLE 3 remote",      # e.g., "Director of IT remote"
-        # Add more search terms as needed
+        "YOUR JOB TITLE 1 remote",      # e.g., "Software Engineering Manager remote"
+        "YOUR JOB TITLE 2 remote",      # e.g., "Director of Engineering remote"
+        "YOUR JOB TITLE 3 remote",      # e.g., "VP Engineering remote"
+        # Add 5-10 search term variations
     ],
 
-    "location": "YOUR_CITY, YOUR_STATE",  # e.g., "[YOUR_CITY, STATE]"
+    "location": "Boston, MA",              # Your city/region for proximity-based searches
     "distance_miles": 50,                  # Commute radius (0 for remote-only)
     "results_per_search": 20,              # Results per site per search term
     "hours_old": 72,                       # Only jobs posted in last N hours
@@ -35,26 +35,31 @@ CONFIG = {
     # Resume file path (relative to this script)
     "resume_file": "resume.txt",
 
-    # Filtering criteria (used by filter_it_roles_v2.py)
-    "min_salary": 0,  # Minimum acceptable salary (e.g., 123456 for $123k)
+    # Filtering criteria (used by filter_promising_jobs.py)
+    "min_salary": 123456,  # Minimum acceptable salary (e.g., $123,456)
 
-    # Leadership titles to filter for
+    # Commutable areas for hybrid/on-site roles (optional)
+    # List cities/towns you're willing to commute to for exceptional opportunities
+    # Leave empty [] to only consider remote roles
+    # Example for Boston suburbs: ["cambridge", "somerville", "brookline", "newton", "waltham"]
+    "commutable_areas": [],
+
+    # Leadership titles to filter for (customize to your target level)
     "target_titles": [
         "director", "manager", "head", "vp",
-        "senior manager", "sr. director", "sr director", "lead"
+        "senior manager", "lead"
     ],
 
-    # IT subspecialties that match your expertise
-    # Customize for your domain (examples: 'security', 'devops', 'data', 'cloud')
+    # Domain keywords that match your expertise
+    # Customize for your field (examples: 'devops', 'data', 'cloud', 'security', 'infrastructure')
     "it_subspecialties": [
         "engineering", "platform", "systems",
-        "operations", "technology", "infrastructure"
+        "operations", "technology"
     ],
 
     # Keywords to exclude (roles you want to avoid)
     "negative_keywords": [
-        "helpdesk", "service desk",
-        "support specialist", "technical support"
+        "intern", "junior", "associate"
     ],
 
     # Output files
