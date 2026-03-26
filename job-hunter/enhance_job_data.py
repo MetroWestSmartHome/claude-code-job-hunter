@@ -28,9 +28,9 @@ def save_seen_jobs(seen_jobs):
         json.dump(seen_jobs, f, indent=2)
 
 def generate_job_hash(row):
-    """Generate unique hash for job (company + title + location)."""
+    """Generate unique hash for job — must match job_hunter.py fingerprint format exactly."""
     import hashlib
-    key = f"{row['company']}|{row['title']}|{row['location']}".lower()
+    key = f"{row['title']}{row['company']}{row['location']}"
     return hashlib.md5(key.encode()).hexdigest()
 
 def main():
